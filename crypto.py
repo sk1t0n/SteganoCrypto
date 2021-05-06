@@ -7,14 +7,14 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
 
 def encrypt(password: str, secret: str) -> bytes:
-    """Зашифровывает текст паролем.
+    """Encrypt text with a password.
 
     Args:
-        password (str): пароль в открытом виде
-        secret (str): текст, который надо зашифровать
+        password (str): a plain text password
+        secret (str): a text for encryption
 
     Returns:
-        bytes: зашифрованный текст в виде набора байтов
+        bytes: the encrypted text as bytes
     """
 
     salt = os.urandom(16)
@@ -32,14 +32,14 @@ def encrypt(password: str, secret: str) -> bytes:
 
 
 def decrypt(password: str, enc_secret: bytes) -> str:
-    """Расшифровывает запороленный текст.
+    """Decrypt text with a password.
 
     Args:
-        password (str): пароль в открытом виде
-        enc_secret (bytes): зашифрованный паролем текст
+        password (str): a plain text password
+        enc_secret (bytes): a encrypted text as bytes
 
     Returns:
-        str: расшифрованный текст в виде строки
+        str: the decoded text as a string
     """
 
     salt = base64.urlsafe_b64decode(enc_secret[:24])

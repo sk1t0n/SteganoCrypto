@@ -5,16 +5,19 @@ from stegano import lsb
 
 
 def hide_text_to_png(in_img_path: str, text: str, out_img_path: str) -> bool:
-    """Скрывает текст в изображении в формате png.
+    """Hide text in a png image.
 
     Args:
-        in_img_path (str): путь к изображению, в котором нужно скрыть текст
-        text (str): текст который нужно скрыть
-        out_img_path (str): путь к новому изображению в формате png
+        in_img_path (str): the path to the image in which you want to hide the text  # noqa
+        text (str): the text you want to hide
+        out_img_path (str): the path to the new png image
+
+    Returns:
+        bool: the result is a success or failure
     """
 
     if not os.path.exists(in_img_path) or os.path.isdir(in_img_path):
-        print('Hide text: image not found')
+        print('No image for hiding')
         return False
 
     secret = lsb.hide(in_img_path, text)
@@ -23,17 +26,17 @@ def hide_text_to_png(in_img_path: str, text: str, out_img_path: str) -> bool:
 
 
 def reveal_text_from_png(img_path: str) -> Optional[str]:
-    """Достаёт текст из изображения в формате png.
+    """Reveal text out of a png image.
 
     Args:
-        img_path (str): путь к изображению в формате png
+        img_path (str): the path to the image in png format
 
     Returns:
-        str: текст
+        str: the encrypted text
     """
 
     if not os.path.exists(img_path) or os.path.isdir(img_path):
-        print('Reveal text: image not found')
+        print('No image for revealing')
         return None
 
     text = lsb.reveal(img_path)

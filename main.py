@@ -8,6 +8,10 @@ from stega import hide_text_to_png, reveal_text_from_png
 def encrypt(
     password: str, input_file: str, secret_file: str, output_file: str
 ) -> bool:
+    if not os.path.exists(secret_file) or os.path.isdir(secret_file):
+        print('No secret file')
+        return False
+
     with open(secret_file) as f:
         secret = f.read()
     enc_secret = crypto.encrypt(password, secret).decode('utf-8')
@@ -48,15 +52,15 @@ def main():
     if mode == 1:
         result = encrypt(password, input_file, secret_file, output_file)
         if result:
-            print(f'Successful creation the image file {output_file}')
+            print(f'Successful creation of the image file {output_file}')
         else:
             print(f'Failed to create the image file {output_file}')
     elif mode == 2:
         result = decrypt(password, input_file, output_file)
         if result:
-            print(f'Successful creation the text file {output_file}')
+            print(f'Successful creation of the text file {output_file}')
         else:
-            print(f'Failed to create the image {output_file}')
+            print(f'Failed to create the text file {output_file}')
     else:
         print('Invalid mode')
 

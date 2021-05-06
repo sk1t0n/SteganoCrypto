@@ -5,7 +5,7 @@ import crypto
 
 class TestCrypto(unittest.TestCase):
     def test_compare_secret_and_dec_secret(self):
-        """Сравнивает исходный текст и расшифрованный текст."""
+        """Compares the source text and the decrypted text."""
 
         password = 'super password'
         secret = 'super secret'
